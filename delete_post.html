@@ -1,0 +1,17 @@
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>글 삭제</title>
+        <meta charset="UTF-8" />
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+    </head>
+    <body>
+      <h3>{{ post.title }} 삭제 확인</h3> 
+      <form method="POST" action=""> 
+        {% csrf_token %} 
+        <p> 정말로 지우시겠습니까?  </p> 
+        {% bootstrap_button "삭제" button_type="submit" button_class="btn-primary" %}
+    </body>
+</html>

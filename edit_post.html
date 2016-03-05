@@ -1,0 +1,34 @@
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title> 글 수정 </title>
+    <meta charset="UTF-8"/>
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+  </head>
+  <body>
+    {% if post %}
+    <h3>{{ post.title }} 수정</h3>
+    {% endif %}
+    <form method="POST" action="">
+      {% csrf_token %}
+      <p>
+        <label>글갈래</label>
+        <select name="category">
+        {% for category in categories %}
+            <option value="{{ category.pk }}"
+            {% if post.category.pk == category.pk %}selected{% endif %}>
+            {{ category.name }}
+            </option>
+        {% endfor %}
+        </select>
+      </p>
+      <p>
+          <label>제목</label>
+          <input type="text" name="title" value="{{ post.title }}" />
+      </p>
+      <p><textarea name="content">{{ post.content }}</textarea></p>
+      {% bootstrap_button "저장" button_type="submit" button_class="btn-primary" %}
+  </body>
+</html>
